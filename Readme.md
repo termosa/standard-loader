@@ -1,6 +1,6 @@
 # typescript-standard-loader
 
-webpack loader for linting your code with [JavaScript Standard Style](https://github.com/standard/standard)
+webpack loader for linting your code with [TypeScript Standard Style](https://github.com/e2tox/typescript-standard)
 
 [![Build Status](https://travis-ci.org/termosa/typescript-standard-loader.png?branch=master)](https://travis-ci.org/termosa/typescript-standard-loader)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
