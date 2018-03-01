@@ -1,6 +1,6 @@
 {
   "name": "typescript-standard-loader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Lint webpack builds with e2tox/typescript-standard",
   "main": "index.js",
   "scripts": {

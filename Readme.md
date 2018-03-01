@@ -52,7 +52,7 @@ module.exports = config
 ```js
 // code not conforming to standard style
 
-const createHero = (Power: string): Hero {
+const createHero = (Power: string) => {
   return { name: Power + ' Man' }
 }
 ```
