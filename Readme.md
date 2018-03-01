@@ -1,26 +1,19 @@
-# standard-loader
+# typescript-standard-loader
 
 webpack loader for linting your code with [JavaScript Standard Style](https://github.com/standard/standard)
 
-[![Build Status](https://travis-ci.org/standard/standard-loader.png?branch=master)](https://travis-ci.org/standard/standard-loader)
+[![Build Status](https://travis-ci.org/termosa/typescript-standard-loader.png?branch=master)](https://travis-ci.org/termosa/typescript-standard-loader)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](http://standardjs.com/)
-
-[![NPM](https://nodei.co/npm/standard-loader.png?downloads=true)](https://nodei.co/npm/standard-loader/)
-[![NPM](https://nodei.co/npm-dl/standard-loader.png?months=3&height=2)](https://nodei.co/npm/standard-loader/)
 
 ## Installation
 
-* Install the desired version of `standard` alongside `standard-loader`.
+* Install the desired version of `typescript-standard` alongside `typescript-standard-loader`.
 
 ```
-npm install --save-dev standard-loader standard
+npm install --save-dev standard-loader typescript-standard
 ```
 
 ## Usage
-
-### Webpack 1
-
-Webpack 1.x is no longer supported as of [`standard-loader` version `6.0.0`](https://github.com/timoxley/standard-loader/compare/5.0.0...6.0.0).  PRs for Webpack 1.x support will be accepted on the [5.x branch](https://github.com/timoxley/standard-loader/tree/5.x).
 
 ### Webpack 2
 
@@ -33,18 +26,16 @@ const config = {
   module: {
     rules: [
       {
-        // set up standard-loader as a preloader
+        // set up typescript-standard-loader as a preloader
         enforce: 'pre',
         test: /\.jsx?$/,
-        loader: 'standard-loader',
+        loader: 'typescript-standard-loader',
         exclude: /(node_modules|bower_components)/,
         options: {
-          // Emit errors instead of warnings (default = false)
-          error: false,
+          // Prints the name of the failed rule (default = true)
+          verbose: true,
           // enable snazzy output (default = true)
-          snazzy: true,
-          // other config options to be passed through to standard e.g.
-          parser: 'babel-eslint'
+          snazzy: true
         }
       },
       // other loaders...
@@ -59,35 +50,31 @@ module.exports = config
 ### Example Input
 
 ```js
-//code not conforming to standard style
+// code not conforming to standard style
 
-module.exports = function(a,b) {
-    console.log( a, b);
+const createHero = (Power: string): Hero {
+  return { name: Power + ' Man' }
 }
-
 ```
 
 ### Example Output
 
 ```
 > webpack
-Hash: 757e85681387cfef939a
-Version: webpack 1.9.11
-Time: 1152ms
-   Asset     Size  Chunks             Chunk Names
-build.js  2.01 kB       0  [emitted]  bundle
-    + 1 hidden modules
+Hash: c3f645e19ff5f5904902
+Version: webpack 4.0.1
+Time: 1060ms
+Built at: 2018-3-2 01:10:38
+ 1 asset
+Entrypoint main = index.js
+   [0] ./index.ts 90 bytes {0} [built] [1 warning]
 
-WARNING in ./index.js
-standard: Use JavaScript Standard Style (https://github.com/feross/standard)
+WARNING in ./index.ts
+(Emitted value instead of an instance of Error)
+/path/to/file/index.ts
+  0:20  error  variable name must be in lowerCamelCase or UPPER_CASE
 
-<text>:1:0: Expected space or tab after // in comment.
-<text>:3:25: Missing space before function parentheses.
-<text>:3:27: A space is required after ','.
-<text>:4:2: Expected indentation of 2 characters.
-<text>:4:15: There should be no spaces inside this paren.
-<text>:4:23: Extra semicolon.
-<text>:7:0: Multiple blank lines not allowed.
+✖ 1 problem
 ```
 
 ## Licence

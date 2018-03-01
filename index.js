@@ -1,6 +1,6 @@
 'use strict'
 
-var standard = require('standard')
+var standard = require('typescript-standard')
 var format = require('util').format
 var loaderUtils = require('loader-utils')
 var snazzy = require('snazzy')
@@ -11,21 +11,20 @@ module.exports = function standardLoader (text) {
   var callback = this.async()
 
   var config = assign({}, loaderUtils.getOptions(this))
-  config.filename = this.resourcePath
+  // TODO: would be nicer if typescript-standard parse the given content instead of loading file again
+  config.files = [this.resourcePath]
   this.cacheable()
 
-  standard.lintText(text, config, function (err, result) {
-    if (err) return callback(err, text)
-    if (result.errorCount === 0) return callback(err, text)
-
-    var warnings = result.results.reduce(function (items, result) {
-      return items.concat(result.messages.map(function (message) {
-        return format(
-          '%s:%d:%d: %s%s',
-          result.filePath, message.line || 0, message.column || 0, message.message,
-          !config.verbose ? ' (' + message.ruleId + ')' : ''
-        )
-      }))
+  config.callback = function (result) {
+    var warnings = result.failures.reduce(function (items, result) {
+      return items.concat(format(
+        '%s:%d:%d: %s%s',
+        result.fileName,
+        result.startPosition.lineAndCharacter.line || 0,
+        result.startPosition.lineAndCharacter.character || 0,
+        result.failure,
+        config.verbose ? ' (' + result.ruleName + ')' : ''
+      ))
     }, [])
     .join('\n')
 
@@ -39,11 +38,13 @@ module.exports = function standardLoader (text) {
       emit(warnings)
     }
 
-    callback(err, text)
-  })
+    callback(null, text)
+  }
+
+  standard.lint(config)
 
   function emit (data) {
-    if (config.error) return self.emitError(data)
+    if (config.error) { return self.emitError(data) }
     self.emitWarning(data)
   }
 }

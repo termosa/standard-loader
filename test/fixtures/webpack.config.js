@@ -14,7 +14,7 @@ const config = {
     rules: [
       {
         enforce: 'pre',
-        // set up standard-loader as a preloader
+        // set up typescript-standard-loader as a preloader
         test: /\.jsx?$/,
         enforce: 'pre',
         loader: path.join(__dirname, '..', '..', 'index.js'),

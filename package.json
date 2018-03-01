@@ -1,7 +1,7 @@
 {
-  "name": "standard-loader",
-  "version": "6.0.1",
-  "description": "Lint webpack builds with feross/standard.",
+  "name": "typescript-standard-loader",
+  "version": "0.0.1",
+  "description": "Lint webpack builds with e2tox/typescript-standard",
   "main": "index.js",
   "scripts": {
     "lint": "standard index.js test/index.js && echo 'code looks ok.'",
@@ -11,16 +11,16 @@
     "webpack",
     "eslint",
     "lint",
+    "typescript",
     "eshint"
   ],
-  "author": "Tim Oxley <secoif@gmail.com>",
+  "author": "Stanislav Termosa <termosa.stanislav@gmail.com> (https://github.com/termosa)",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.3.2",
     "node-libs-browser": "^2.0.0",
-    "standard": "^9.0.0",
     "tape": "^4.6.3",
     "webpack": "^2.2.1"
   },
@@ -30,20 +30,21 @@
   "dependencies": {
     "loader-utils": "^1.0.2",
     "object-assign": "^4.1.1",
-    "snazzy": "^6.0.0"
+    "snazzy": "^6.0.0",
+    "typescript-standard": "^0.3.30"
   },
   "peerDependencies": {
-    "standard": "*"
+    "typescript-standard": "*"
   },
   "directories": {
     "example": "example"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timoxley/standard-loader.git"
+    "url": "git+https://github.com/timoxley/typescript-standard-loader.git"
   },
   "bugs": {
-    "url": "https://github.com/timoxley/standard-loader/issues"
+    "url": "https://github.com/timoxley/typescript-standard-loader/issues"
   },
-  "homepage": "https://github.com/timoxley/standard-loader#readme"
+  "homepage": "https://github.com/timoxley/typescript-standard-loader#readme"
 }
